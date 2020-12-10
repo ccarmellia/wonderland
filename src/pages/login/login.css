@@ -1,0 +1,40 @@
+body {
+  background-image: url("../../assets/login.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 100%;
+}
+.loginWrapper{
+    display: flex;
+    justify-content:space-around;
+    padding-top: 320px;
+}
+.userInput {
+    border-radius: 30px;
+    width: 282px;
+    height: 64px;
+}
+.psdInput {
+    border-radius: 30px;
+    width: 282px;
+    height: 64px;
+}
+.loginButton{
+    width: 100px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: #F49370;
+    font-size: 20px;
+    color: #FFF3F3;
+    margin: 18px;
+}
+.registerButton{
+    width: 100px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: #E4E4E4;
+    font-size: 20px;
+    color: #707070;
+    margin: 18px;
+}
