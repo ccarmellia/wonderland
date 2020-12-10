@@ -1,14 +1,12 @@
-body {
-  background-image: url("../../assets/login.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: 100% 100%;
+.Wrapper{
+    background: url("../../assets/login.png");
+    background-size: 100% 100%;
+    min-height:100vh
 }
 .loginWrapper{
+    background-size: 100% 100%;
     display: flex;
     justify-content:space-around;
-    padding-top: 320px;
 }
 .userInput {
     border-radius: 30px;

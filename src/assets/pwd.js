@@ -18,4 +18,4 @@ const Pwd = () => (
     />
   </svg>
 );
-export const pwdItem = (props) => <Icon component={Pwd} {...props} />;
+export const pwdItem = () => <Icon component={Pwd} />;

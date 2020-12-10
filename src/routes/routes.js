@@ -4,6 +4,7 @@ import Topics from "../pages/topics";
 import Login from "../pages/login/login";
 import Home from "../pages/home/home";
 import User from "../pages/user/user";
+import {Navigation} from "../components/navigation"
 import Register from "../pages/register/register";
 import "antd/dist/antd.css";
 import {
@@ -25,7 +26,7 @@ const Routes = () => {
         <Route path="/register" component={Register} />
         <Route path="/square" component={Square} />
       </Switch>
-      <div className="footer">
+      {/* <div className="footer">
         <div className="container">
           <ul>
             <li>
@@ -50,7 +51,7 @@ const Routes = () => {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
     </BrowserRouter>
   );
 };

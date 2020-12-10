@@ -22,48 +22,50 @@ export const Login = () => {
   };
 
   return (
-    <div className="loginWrapper">
-      <Form name="normal_login" className="login-form" onFinish={onFinish}>
-        <Form.Item
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: "Please input your Username!",
-            },
-          ]}
-        >
-          <Input
-            className="userInput"
-            prefix={<UserOutlined  style={{fontSize:'24px'}}/>}
-            placeholder="用户名"
-          />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your Password!",
-            },
-          ]}
-        >
-          <Input
-            className="psdInput"
-            prefix={<LockOutlined style={{fontSize:'24px'}}/>}
-            type="password"
-            placeholder="密码"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Button className="loginButton" htmlType="submit">
-            登录
-          </Button>
-          <Link to="/register">
-            <Button className="registerButton">注册</Button>
-          </Link>
-        </Form.Item>
-      </Form>
+    <div className="Wrapper">
+      <div className="loginWrapper">
+        <Form name="normal_login" className="login-form" onFinish={onFinish}>
+          <Form.Item
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Username!",
+              },
+            ]}
+          >
+            <Input
+              className="userInput"
+              prefix={<UserOutlined style={{ fontSize: "24px" }} />}
+              placeholder="用户名"
+            />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Password!",
+              },
+            ]}
+          >
+            <Input
+              className="psdInput"
+              prefix={<LockOutlined style={{ fontSize: "24px" }} />}
+              type="password"
+              placeholder="密码"
+            />
+          </Form.Item>
+          <Form.Item>
+            <Button className="loginButton" htmlType="submit">
+              登录
+            </Button>
+            <Link to="/register">
+              <Button className="registerButton">注册</Button>
+            </Link>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 };

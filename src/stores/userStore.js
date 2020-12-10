@@ -2,12 +2,9 @@ import create from "zustand";
 import axios from "axios";
 import {BASE_URL} from "../config"
 import { sleep } from "../utils/sleep";
-import produce from immer
 import {publishCreation, getAll, getUserStar,getLiteraryOutput,getPictureOutput} from "../utils/requests"
 
-const immer = config => (set, get, api) => config(fn => set(produce(fn)), get, api)
-
-export const useUserStore = create(immer((set) => ({
+export const useUserStore = create((set) => ({
   //登录
   login: async (username, password) => {
     const { data } = await axios.post(`${BASE_URL}/login`, {
@@ -70,4 +67,4 @@ export const useUserStore = create(immer((set) => ({
   userStar:[],
   squareBuildings:[],
   newBuilding:[],
-})));
+}));
