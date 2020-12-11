@@ -1,12 +1,12 @@
 .navigation{
-    position: fixed;
-    display: flex;
+    position: absolute;
     height: 60px;
     background-color: #fff;
     border-top: 1px solid #dcdcdc!important;
     justify-content: space-around;
     flex-wrap: nowrap;
     bottom: 0;
+    z-index: 1;
     width: 100%;
 }
 .homeWapper{

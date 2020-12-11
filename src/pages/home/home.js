@@ -72,9 +72,7 @@ export const Home = () => {
           )}
         />
       </div>
-      <div className="navigaiton">
-        <Navigation />
-      </div>
+        <Navigation className="navigaiton"/>
     </div>
   );
 };

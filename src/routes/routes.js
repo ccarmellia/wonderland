@@ -1,18 +1,11 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Switch, Route} from "react-router-dom";
 import Topics from "../pages/topics";
 import Login from "../pages/login/login";
 import Home from "../pages/home/home";
 import User from "../pages/user/user";
-import {Navigation} from "../components/navigation"
 import Register from "../pages/register/register";
 import "antd/dist/antd.css";
-import {
-  HomeOutlined,
-  SettingFilled,
-  SmileOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
 import Square from "../pages/square/square";
 
 const Routes = () => {
