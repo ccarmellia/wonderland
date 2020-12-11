@@ -83,8 +83,8 @@ export const Home = () => {
                     src={houseLogo}
                   />
                 }
-                title={<a href="https://ant.design">{item.title}</a>}
-                description={item.description}
+                title={<a href="https://ant.design" style={{color:"#FFFFFF"}}>{item.title}</a>}
+                description={<div style={{color:"#FFFFFF"}}>{item.description}</div>}
               />
             </List.Item>
           )}
