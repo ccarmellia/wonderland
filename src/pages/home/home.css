@@ -1,11 +1,6 @@
-.navigation{
-    position: absolute;
-    height: 60px;
-    background-color: #fff;
-    border-top: 1px solid #dcdcdc!important;
-    justify-content: space-around;
-    flex-wrap: nowrap;
-    bottom: 0;
+.Navigation{
+    position: fixed;
+    bottom: 0px;
     z-index: 1;
     width: 100%;
 }
@@ -15,7 +10,7 @@
 .searchWrapper{
     display: flex;
     justify-content: center;
-    padding: 20px;
+    padding: 50px 20px 20px 20px;
 }
 .searchInput{
     border-radius: 50%;
@@ -23,10 +18,35 @@
     width: 350px;
     background-color: #E3E3E3;
 }
-.listItemStyle{
-    padding: 30px;
+.listStyle{
+    width: 380px;
+    height: 100px;
 }
-.listAvater{
-    width: 50px;
-    height: 50px;
+.listItemStyle-book{
+    margin: 20px;
+    padding: 0px;
+    background: url("../../assets/listItemBackgroundBook.png");
+    background-size: 100% 100%;
+    border-radius: 20px;
+    min-height:50px;
+}
+.listItemStyle-video{
+    margin: 20px;
+    padding: 0px;
+    background: url("../../assets/listItemBackgroundVideo.png");
+    background-size: 100% 100%;
+    border-radius: 20px;
+}
+.listItemStyle-music{
+    margin: 20px;
+    padding: 0px;
+    background: url("../../assets/listItemBackgroundMusic.png");
+    background-size: 100% 100%;
+    border-radius: 20px;
+}
+.listImage{
+    padding-top: 15px;
+}
+.blankContainer{
+    height: 77px;
 }
