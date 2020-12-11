@@ -19,32 +19,6 @@ const Routes = () => {
         <Route path="/register" component={Register} />
         <Route path="/square" component={Square} />
       </Switch>
-      {/* <div className="footer">
-        <div className="container">
-          <ul>
-            <li>
-              <NavLink to="/home">
-                <SmileOutlined />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/topics">
-                <SettingFilled />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/user">
-                <HomeOutlined />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/login">
-                <UserOutlined />
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-      </div> */}
     </BrowserRouter>
   );
 };
