@@ -2,7 +2,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "./home.css";
-import houseLogo from "../../assets/houseLogo.png"
+import houseLogo from "../../assets/houseLogo.png";
 import { Navigation } from "../../components/navigation";
 import { List, Image, Input } from "antd";
 
@@ -77,14 +77,20 @@ export const Home = () => {
               <List.Item.Meta
                 avatar={
                   <Image
-                  className="listImage"
+                    className="listImage"
                     width={130}
                     height={140}
                     src={houseLogo}
                   />
                 }
-                title={<a href="https://ant.design" style={{color:"#FFFFFF"}}>{item.title}</a>}
-                description={<div style={{color:"#FFFFFF"}}>{item.description}</div>}
+                title={
+                  <a href="https://ant.design" style={{ color: "#FFFFFF" }}>
+                    {item.title}
+                  </a>
+                }
+                description={
+                  <div style={{ color: "#FFFFFF" }}>{item.description}</div>
+                }
               />
             </List.Item>
           )}
