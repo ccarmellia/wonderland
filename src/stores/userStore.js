@@ -15,7 +15,7 @@ export const useUserStore = create((set) => ({
       username: data.user.username,
       token: data.jwt,
     };
-    await localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user));
     set({ user });
   },
   //登出

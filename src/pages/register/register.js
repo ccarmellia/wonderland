@@ -24,8 +24,9 @@ export const Register = () => {
       username: values.nickname,
       password: values.password
     })
-    .then(function (response) {
-      console.log(response);
+    .then(function (res) {
+      console.log(res);
+      console.log(res.data.data.username)
     })
     .catch(function (error) {
       console.log(error);

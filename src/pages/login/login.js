@@ -30,8 +30,9 @@ export const Login = () => {
         password: values.password
       }
     })
-    .then(function (response) {
-      console.log(response)
+    .then(function (res) {
+      console.log(res)
+      console.log(res.data.data.Token)
     });
   }
 
