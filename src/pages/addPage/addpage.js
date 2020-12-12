@@ -9,32 +9,13 @@ const { TextArea } = Input;
 export const AddPage = () => {
   const contentRef = useRef(null);
 
-  const [itemList, setItemList] = useState([]);
-  //   const username = localStorage.getItem(username);
-  //   const content = contentRef.current.value;
-  function Create() {
-    // if (!contentRef.current.value) {
-    //   return;
-    // }
-    axios({
-      method: "post",
-      headers: {
-        token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFhYSIsInBhc3N3b3JkIjoiMTExIiwiZXhwIjoxNjA3NzgyMjYzLCJpc3MiOiJseHkiLCJuYmYiOjE2MDc3Nzc2NjN9.n8qXbo3LWj-Wk2PiwWR0TzfPsJmt_COHlylPFVZ03mI",
-      },
-      url: "/newarticle",
-      data: {
-        name: "红舞鞋",
-        up_id: "aaa",
-        text_src: "这是红舞鞋",
-      },
-    }).then(function (res) {
-      console.log(res);
-      console.log(res.data.data.name);
-      //   console.log(res.data.data.Token)
-    });
-  }
-  const getData = () => {
+  const [itemList, setItemList] = useState(null);
+
+  const Create = () => {
+    setItemList(contentRef.current.value);
+    // const content = contentRef.current.value;
+    console.log(itemList)
+    const buildingName = localStorage.getItem("buildingName");
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
     axios({
@@ -42,14 +23,15 @@ export const AddPage = () => {
       type: "json",
       method: "post",
       headers: { token: token },
-      data: { name: username, up_id: username, text_src: username },
+      data: { name: buildingName, up_id: username, text_src: itemList },
       contentType: "application/json",
     }).then((res) => {
       setItemList({
         data: res.data.data,
         list: res.data.data,
       });
-      console.log(res.data.data);
+      console.log(res);
+      window.history.back();
     });
   };
 

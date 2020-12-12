@@ -1,14 +1,13 @@
 /* eslint no-dupe-keys: 0, no-mixed-operators: 0 */
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import "antd/dist/antd.css";
 import "./home.css";
-import { Link ,Redirect} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import addItem from "../../assets/addItem.png";
 import houseLogo from "../../assets/houseLogo.png";
 import { Navigation } from "../../components/navigation";
 import { List, Image, Input } from "antd";
-
 const data = [
   {
     type: "book",
@@ -39,29 +38,21 @@ const data = [
     description:
       "《红辣椒》改编自筒井康隆的封笔之作《梦侦探》，讲述美女医师千叶敦子与天才科学家时田浩作一起发明了“DC MINI”从而引发的故事。",
   },
-  {
-    type: "music",
-    title: "红莲华",
-    description:
-      "《红莲华》是由LiSA演唱的一首歌曲，由LiSA作词，草野华余子作曲，江口亮编曲，是TV动画《鬼灭之刃》的片头曲。",
-  },
 ];
-
 const { Search } = Input;
 
 const onSearch = (value) => console.log(value);
 
 export const Home = () => {
-
   const [itemList, setItemList] = useState([]);
   useEffect(() => {
-    // getData((res) => {
-    //   setItemList({
-    //     data: res.data.data,
-    //     list: res.data.data,
-    //   });
-    //   console.log(res.data.data);
-    // });
+    getData((res) => {
+      setItemList({
+        data: res.data.data,
+        list: res.data.data,
+      });
+      console.log(res.data.data);
+    });
   }, [itemList]);
 
   const getData = () => {
@@ -84,14 +75,12 @@ export const Home = () => {
     });
   };
 
-  const { list } = itemList;
-
-  const username = localStorage.getItem("username");
-
-  const handleClick=(buildingName)=>{
-
-    <Redirect to="/buildings" />
+  function handleClick(buildingName) {
+    localStorage.setItem("buildingName", buildingName);
+    console.log(buildingName);
   }
+
+  const { list } = itemList;
 
   return (
     <div className="homeWrapper">
@@ -101,6 +90,56 @@ export const Home = () => {
           placeholder="input search text"
           allowClear
           onSearch={onSearch}
+        />
+      </div>
+      <div className="listWrapper">
+        <List
+          className="listStyle"
+          itemLayout="horizontal"
+          dataSource={data}
+          renderItem={(item) => (
+            <List.Item
+              className={
+                item.type === "book"
+                  ? "listItemStyle-book"
+                  : item.type === "video"
+                  ? "listItemStyle-video"
+                  : "listItemStyle-music"
+              }
+            >
+              <List.Item.Meta
+                onClick={handleClick(item.title)}
+                avatar={
+                  <Link to="/buildings">
+                    <Image
+                      className="listImage"
+                      width={130}
+                      height={140}
+                      src={houseLogo}
+                    />
+                  </Link>
+                }
+                title={
+                  <a href="https://ant.design" style={{ color: "#FFFFFF" }}>
+                    {item.title}
+                  </a>
+                }
+                description={
+                  <div style={{ color: "#FFFFFF" }}>{item.description}</div>
+                }
+              />
+              <div>
+                <Link to="/add">
+                  <Image
+                    width={30}
+                    height={30}
+                    style={{ bottom: 0 }}
+                    src={addItem}
+                  />
+                </Link>
+              </div>
+            </List.Item>
+          )}
         />
       </div>
       <div className="listWrapper">
@@ -151,7 +190,7 @@ export const Home = () => {
           )}
         />
       </div>
-      <div className="blankContainer"></div>
+      {/* <buildingContext.Provider value={BuildingName}></buildingContext.Provider> */}
       <div>
         <Navigation />
       </div>
