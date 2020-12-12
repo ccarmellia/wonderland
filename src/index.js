@@ -5,6 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom'
 
+import axios from "axios"
+
+axios.defaults.baseURL="http://182.254.159.37:92";
+
 ReactDOM.render(
   <BrowserRouter>
     <App />

@@ -1,6 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "./login.css";
+import axios from "axios"
 import { Link, Redirect } from "react-router-dom";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useUserStore } from "../../stores/userStore";
@@ -9,17 +10,30 @@ import { Input, Button, Form } from "antd";
 export const Login = () => {
   const login = useUserStore((state) => state.login);
 
+  // const onFinish = (values) => {
+  //   console.log(values);
+  //   (async () => {
+  //     try {
+  //       await login(values.username, values.password);
+  //       <Redirect to="/home" />;
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   })();
+  // };
   const onFinish = (values) => {
-    console.log(values);
-    (async () => {
-      try {
-        await login(values.username, values.password);
-        <Redirect to="/home" />;
-      } catch (error) {
-        console.error(error);
+    axios({
+      method: 'post',
+      url: '/login',
+      data: {
+        username: values.username,
+        password: values.password
       }
-    })();
-  };
+    })
+    .then(function (response) {
+      console.log(response)
+    });
+  }
 
   return (
     <div className="Wrapper">

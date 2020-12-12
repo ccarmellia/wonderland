@@ -1,6 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
-import "./register.css"
+import axios from "axios";
+import "./register.css";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useUserStore } from "../../stores/userStore";
 import { Link, Redirect } from "react-router-dom";
@@ -9,21 +10,37 @@ import { Form, Input, Button } from "antd";
 export const Register = () => {
   const [form] = Form.useForm();
 
+  // const onFinish = (values) => {
+  //   console.log(values)(async () => {
+  //     try {
+  //       await register(values.nickname, values.password);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   })();
+  // };
   const onFinish = (values) => {
-    console.log(values)(async () => {
-      try {
-        await register(values.username, values.password);
-        <Redirect to="/home" />;
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  };
+    axios.post('/register', {
+      username: values.nickname,
+      password: values.password
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   const register = useUserStore((state) => state.register);
 
   return (
     <div className="Wrapper">
-      <Form form={form} name="register" onFinish={onFinish}>
+      <Form
+        form={form}
+        name="register"
+        onFinish={onFinish}
+      >
         <Form.Item
           name="nickname"
           rules={[
@@ -34,7 +51,10 @@ export const Register = () => {
             },
           ]}
         >
-          <Input className="userInput" prefix={<UserOutlined style={{fontSize:'24px'}}/>} />
+          <Input
+            className="userInput"
+            prefix={<UserOutlined style={{ fontSize: "24px" }} />}
+          />
         </Form.Item>
 
         <Form.Item
@@ -47,7 +67,10 @@ export const Register = () => {
           ]}
           hasFeedback
         >
-          <Input.Password className="psdInput" prefix={<LockOutlined style={{fontSize:'24px'}}/>} />
+          <Input.Password
+            className="psdInput"
+            prefix={<LockOutlined style={{ fontSize: "24px" }} />}
+          />
         </Form.Item>
 
         <Form.Item
@@ -74,7 +97,7 @@ export const Register = () => {
         >
           <Input.Password
             className="psdInput"
-            prefix={<LockOutlined style={{fontSize:'24px'}} />}
+            prefix={<LockOutlined style={{ fontSize: "24px" }} />}
           />
         </Form.Item>
         <Form.Item>

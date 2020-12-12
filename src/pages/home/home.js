@@ -2,9 +2,12 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "./home.css";
+import { Link ,Redirect} from "react-router-dom";
+import addItem from "../../assets/addItem.png";
 import houseLogo from "../../assets/houseLogo.png";
 import { Navigation } from "../../components/navigation";
 import { List, Image, Input } from "antd";
+import {useUserStore} from "../../stores/userStore"
 
 const data = [
   {
@@ -16,7 +19,7 @@ const data = [
     type: "video",
     title: "红高粱",
     description:
-      "《《红高粱》是由西安电影制片厂出品的战争文艺片，由张艺谋执导，姜文、巩俐、滕汝骏等主演，于1987年在中国上映。",
+      "《红高粱》是由西安电影制片厂出品的战争文艺片，由张艺谋执导，姜文、巩俐、滕汝骏等主演，于1987年在中国上映。",
   },
   {
     type: "music",
@@ -49,6 +52,12 @@ const { Search } = Input;
 const onSearch = (value) => console.log(value);
 
 export const Home = () => {
+
+  const handleClick=(buildingName)=>{
+
+    <Redirect to="/buildings" />
+  }
+
   return (
     <div className="homeWrapper">
       <div className="searchWrapper">
@@ -77,6 +86,7 @@ export const Home = () => {
               <List.Item.Meta
                 avatar={
                   <Image
+                    onClick={handleClick(item.title)}
                     className="listImage"
                     width={130}
                     height={140}
@@ -92,6 +102,16 @@ export const Home = () => {
                   <div style={{ color: "#FFFFFF" }}>{item.description}</div>
                 }
               />
+              <div>
+                <Link to="/add">
+                  <Image
+                    width={30}
+                    height={30}
+                    style={{ bottom: 0 }}
+                    src={addItem}
+                  />
+                </Link>
+              </div>
             </List.Item>
           )}
         />
