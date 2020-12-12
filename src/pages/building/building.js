@@ -45,8 +45,8 @@ export const Buildings = () => {
         <PageHeader
           className="site-page-header"
           onBack={() => window.history.back()}
-          title="Title"
-          subTitle="This is a subtitle"
+          title="建筑内部"
+          subTitle="对不起，这个部分还在施工中..."
         />
       </div>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
