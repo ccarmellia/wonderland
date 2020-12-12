@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef,useState } from "react";
 import "antd/dist/antd.css";
 import { PageHeader, Button } from "antd";
 import axios from "axios";
@@ -7,14 +7,11 @@ import { Input } from "antd";
 const { TextArea } = Input;
 
 export const AddPage = () => {
+    
   const contentRef = useRef(null);
 
-  const [itemList, setItemList] = useState(null);
-
   const Create = () => {
-    setItemList(contentRef.current.value);
-    // const content = contentRef.current.value;
-    console.log(itemList)
+    const content = contentRef.current.value;
     const buildingName = localStorage.getItem("buildingName");
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
@@ -23,13 +20,9 @@ export const AddPage = () => {
       type: "json",
       method: "post",
       headers: { token: token },
-      data: { name: buildingName, up_id: username, text_src: itemList },
+      data: { name: buildingName, up_id: username, text_src: content },
       contentType: "application/json",
     }).then((res) => {
-      setItemList({
-        data: res.data.data,
-        list: res.data.data,
-      });
       console.log(res);
       window.history.back();
     });
@@ -57,9 +50,10 @@ export const AddPage = () => {
         ></PageHeader>
       </div>
       <div>
-        <TextArea
+        <textarea
+          style={{width:"100%",height:"600px"}}
           ref={contentRef}
-          rows={27}
+          type="text"
           placeholder="在此处编辑你的作品..."
         />
       </div>
