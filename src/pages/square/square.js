@@ -1,8 +1,11 @@
-import { useUserStore } from "../../stores/userStore";
 import React from "react";
 import { Navigation } from "../../components/navigation";
 import "antd/dist/antd.css";
-import { Input, Carousel, Tabs, Card, List } from "antd";
+import recommand1 from "../../assets/recommand1.jpg";
+import recommand2 from "../../assets/recommand2.jpg";
+import recommand3 from "../../assets/recommand3.png";
+import recommand4 from "../../assets/recommand4.png";
+import { Input, Carousel, Tabs, Card, List,Image } from "antd";
 import houseLogo from "../../assets/houseLogo.png";
 
 const { Search } = Input;
@@ -47,31 +50,11 @@ function callback(key) {
   console.log(key);
 }
 
-const contentStyle = {
-  height: "160px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  fontSize: "40px",
-  background: "#69b4a0",
-};
-
 export const Square = () => {
-  const getSquare = useUserStore((state) => state.getSquare);
-
-  // const Data = () => {
-  //   (async () => {
-  //     try {
-  //       await getSquare();
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   })();
-  // };
 
   return (
     <div className="carouselWrapper">
-      <div className="searchWrapper" >
+      <div className="searchWrapper">
         <Search
           className="searchInput"
           placeholder="input search text"
@@ -82,23 +65,23 @@ export const Square = () => {
       <div>
         <Carousel autoplay>
           <div>
-            <h3 style={contentStyle}>红高粱</h3>
+            <Image src={recommand1} />
           </div>
           <div>
-            <h3 style={contentStyle}>红楼梦</h3>
+            <Image src={recommand2} />
           </div>
           <div>
-            <h3 style={contentStyle}>红与黑</h3>
+            <Image src={recommand3} />
           </div>
           <div>
-            <h3 style={contentStyle}>红辣椒</h3>
+            <Image src={recommand4} />
           </div>
         </Carousel>
       </div>
       <div>
-        <Tabs onChange={callback} type="card" style={{ display: "flex"}}>
+        <Tabs onChange={callback} type="card" style={{ display: "flex" }}>
           <TabPane tab="书籍" key="1">
-          <List
+            <List
               grid={{ gutter: 16, column: 3 }}
               dataSource={data}
               renderItem={(item) => (
@@ -115,7 +98,7 @@ export const Square = () => {
             />
           </TabPane>
           <TabPane tab="影视" key="2">
-          <List
+            <List
               grid={{ gutter: 16, column: 3 }}
               dataSource={data}
               renderItem={(item) => (

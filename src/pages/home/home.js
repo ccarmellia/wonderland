@@ -1,5 +1,6 @@
 /* eslint no-dupe-keys: 0, no-mixed-operators: 0 */
-import React from "react";
+import React,{useState,useEffect} from "react";
+import axios from "axios";
 import "antd/dist/antd.css";
 import "./home.css";
 import { Link ,Redirect} from "react-router-dom";
@@ -7,7 +8,6 @@ import addItem from "../../assets/addItem.png";
 import houseLogo from "../../assets/houseLogo.png";
 import { Navigation } from "../../components/navigation";
 import { List, Image, Input } from "antd";
-import {useUserStore} from "../../stores/userStore"
 
 const data = [
   {
@@ -53,6 +53,41 @@ const onSearch = (value) => console.log(value);
 
 export const Home = () => {
 
+  const [itemList, setItemList] = useState([]);
+  useEffect(() => {
+    // getData((res) => {
+    //   setItemList({
+    //     data: res.data.data,
+    //     list: res.data.data,
+    //   });
+    //   console.log(res.data.data);
+    // });
+  }, [itemList]);
+
+  const getData = () => {
+    const username = localStorage.getItem("username");
+    const token = localStorage.getItem("token");
+    axios({
+      url: "/querysavebuilding",
+      type: "json",
+      method: "post",
+      headers: { token: token },
+      data: { username: username },
+      contentType: "application/json",
+    }).then((res) => {
+      setItemList({
+        initLoading: false,
+        data: res.data.data,
+        list: res.data.data,
+      });
+      console.log(res.data.data);
+    });
+  };
+
+  const { list } = itemList;
+
+  const username = localStorage.getItem("username");
+
   const handleClick=(buildingName)=>{
 
     <Redirect to="/buildings" />
@@ -72,11 +107,11 @@ export const Home = () => {
         <List
           className="listStyle"
           itemLayout="horizontal"
-          dataSource={data}
+          dataSource={list}
           renderItem={(item) => (
             <List.Item
               className={
-                item.type === "book"
+                item.building_class === "book"
                   ? "listItemStyle-book"
                   : item.type === "video"
                   ? "listItemStyle-video"
@@ -95,11 +130,11 @@ export const Home = () => {
                 }
                 title={
                   <a href="https://ant.design" style={{ color: "#FFFFFF" }}>
-                    {item.title}
+                    {item.building_name}
                   </a>
                 }
                 description={
-                  <div style={{ color: "#FFFFFF" }}>{item.description}</div>
+                  <div style={{ color: "#FFFFFF" }}>{item.text_src}</div>
                 }
               />
               <div>

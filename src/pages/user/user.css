@@ -7,11 +7,15 @@
     height: 150px;
     width: 100%;
 }
+.logouLogo{
+    position: absolute;
+    top:53px;
+    right: 3px;
+}
 .listStyle {
   width: 380px;
   height: 100px;
 }
-
 .listItemStyle {
   margin: 20px;
   padding: 0px;

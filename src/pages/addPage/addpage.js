@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "antd/dist/antd.css";
 import { PageHeader, Button } from "antd";
 import axios from "axios";
@@ -7,31 +7,51 @@ import { Input } from "antd";
 const { TextArea } = Input;
 
 export const AddPage = () => {
-
   const contentRef = useRef(null);
 
-  const username = localStorage.getItem(username);
-
-  function Create(e) {
-    e.preventDefault();
-    if (!contentRef.current.value) { 
-      return;
-    }
-    const content = contentRef.current.value;
+  const [itemList, setItemList] = useState([]);
+  //   const username = localStorage.getItem(username);
+  //   const content = contentRef.current.value;
+  function Create() {
+    // if (!contentRef.current.value) {
+    //   return;
+    // }
     axios({
       method: "post",
+      headers: {
+        token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFhYSIsInBhc3N3b3JkIjoiMTExIiwiZXhwIjoxNjA3NzgyMjYzLCJpc3MiOiJseHkiLCJuYmYiOjE2MDc3Nzc2NjN9.n8qXbo3LWj-Wk2PiwWR0TzfPsJmt_COHlylPFVZ03mI",
+      },
       url: "/newarticle",
       data: {
-        username: username,
-        content: content,
+        name: "红舞鞋",
+        up_id: "aaa",
+        text_src: "这是红舞鞋",
       },
     }).then(function (res) {
       console.log(res);
+      console.log(res.data.data.name);
       //   console.log(res.data.data.Token)
     });
-    // 添加完后清空输入框
-    contentRef.current.value = "";
   }
+  const getData = () => {
+    const username = localStorage.getItem("username");
+    const token = localStorage.getItem("token");
+    axios({
+      url: "/newarticle",
+      type: "json",
+      method: "post",
+      headers: { token: token },
+      data: { name: username, up_id: username, text_src: username },
+      contentType: "application/json",
+    }).then((res) => {
+      setItemList({
+        data: res.data.data,
+        list: res.data.data,
+      });
+      console.log(res.data.data);
+    });
+  };
 
   return (
     <div>
@@ -55,7 +75,11 @@ export const AddPage = () => {
         ></PageHeader>
       </div>
       <div>
-        <TextArea ref={contentRef} rows={27} placeholder="在此处编辑你的作品..." />
+        <TextArea
+          ref={contentRef}
+          rows={27}
+          placeholder="在此处编辑你的作品..."
+        />
       </div>
     </div>
   );

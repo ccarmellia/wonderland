@@ -3,7 +3,6 @@ import "antd/dist/antd.css";
 import axios from "axios";
 import "./register.css";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { useUserStore } from "../../stores/userStore";
 import { Link, Redirect } from "react-router-dom";
 import { Form, Input, Button } from "antd";
 
@@ -27,13 +26,16 @@ export const Register = () => {
     .then(function (res) {
       console.log(res);
       console.log(res.data.data.username)
+      localStorage.setItem("username", res.data.data.username);
     })
     .catch(function (error) {
       console.log(error);
     });
   }
-
-  const register = useUserStore((state) => state.register);
+  const username = localStorage.getItem("username");
+  if (username) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <div className="Wrapper">

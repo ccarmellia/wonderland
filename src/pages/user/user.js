@@ -1,31 +1,78 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
-import "./user.css"
-import userBackground from "../../assets/userBackground.png"
+import "./user.css";
+import axios from "axios";
+import logoutLogo from "../../assets/logoutLogo.png";
+import { Redirect } from "react-router-dom";
 import userAvatar from "../../assets/userAvatar.png";
 import { Navigation } from "../../components/navigation";
 import { Card, Image, List, Avatar } from "antd";
 
 const { Meta } = Card;
 
-const listData = [];
-for (let i = 0; i < 23; i++) {
-  listData.push({
-    name: "李桑",
-    content:
-      "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
-  });
-}
+
+// const Logout = () => {
+//   localStorage.removeItem("username");
+//   localStorage.removeItem("token");
+// };
 
 export const User = () => {
+  const [itemList, setItemList] = useState([]);
+  useEffect(() => {
+    getData((res) => {
+      // setItemList({
+      //   data: res.data.data,
+      //   list: res.data.data,
+      // });
+      // console.log(res.data.data);
+    });
+  }, [itemList]);
+
+  const getData = () => {
+    const username = localStorage.getItem("username");
+    const token = localStorage.getItem("token");
+    axios({
+      url: "/querysave",
+      type: "json",
+      method: "post",
+      headers: { token: token },
+      data: { username: username },
+      contentType: "application/json",
+    }).then((res) => {
+      setItemList({
+        initLoading: false,
+        data: res.data.data,
+        list: res.data.data,
+      });
+      console.log(res.data.data);
+    });
+  };
+
+  const { list } = itemList;
+
+  const username = localStorage.getItem("username");
+
+  if (!username) {
+    return <Redirect to="/login" />;
+  }
+
   return (
     <div className="userWrapper">
       <div className="userHeader">
-          <Meta
-            avatar={<Image width={80} height={80} src={userAvatar} />}
-            title="李桑"
-            description="当地一位比较有意思的打工人小李"
+        <Meta
+          avatar={<Image width={80} height={80} src={userAvatar} />}
+          title={username}
+          description="一位筑境的新用户（在筑境，住进热爱）"
+        />
+        <div className="logouLogo">
+          <Image
+            // onClick={Logout()}
+            className="logouLogo"
+            src={logoutLogo}
+            width={40}
+            height={40}
           />
+        </div>
       </div>
       <div className="listWrapper">
         <List
@@ -38,18 +85,15 @@ export const User = () => {
             },
             pageSize: 7,
           }}
-          dataSource={listData}
+          dataSource={list}
           renderItem={(item) => (
             <List.Item className="listItemStyle">
               <List.Item.Meta
                 avatar={<Avatar src={userAvatar} />}
-                title={<a href={item.href}>{item.name}</a>}
+                title={item.up_id}
               >
-                <Card style={{ border: "20px", backgroundColor: "#F5F5F5" }}>
-                  {item.description}
-                </Card>
               </List.Item.Meta>
-              {item.content}
+              {item.text_src}
             </List.Item>
           )}
         />

@@ -1,40 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import "antd/dist/antd.css";
 import "./login.css";
-import axios from "axios"
+import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { useUserStore } from "../../stores/userStore";
 import { Input, Button, Form } from "antd";
 
 export const Login = () => {
-  const login = useUserStore((state) => state.login);
+  const [user, setUser] = useState();
 
-  // const onFinish = (values) => {
-  //   console.log(values);
-  //   (async () => {
-  //     try {
-  //       await login(values.username, values.password);
-  //       <Redirect to="/home" />;
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   })();
-  // };
+  const username = localStorage.getItem("username");
+
+  if (username) {
+    return <Redirect to="/square" />;
+  }
+
   const onFinish = (values) => {
     axios({
-      method: 'post',
-      url: '/login',
+      method: "post",
+      url: "/login",
       data: {
         username: values.username,
-        password: values.password
+        password: values.password,
+      },
+    }).then(function (res) {
+      console.log(res);
+      console.log(res.data.data.Token);
+      console.log(res.data.data.ID);
+      localStorage.setItem("username", res.data.data.ID);
+      localStorage.setItem("token", res.data.data.Token);
+      setUser({
+        user: res.data.data,
+      });
+      if (res.data.data.ID) {
+        return <Redirect to="/square" />;
       }
-    })
-    .then(function (res) {
-      console.log(res)
-      console.log(res.data.data.Token)
     });
-  }
+  };
 
   return (
     <div className="Wrapper">
