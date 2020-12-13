@@ -90,7 +90,7 @@ export const Square = () => {
                   <Card
                     hoverable
                     style={{ width: 120 }}
-                    cover={<img alt="example" src={houseLogo} height={120} />}
+                    cover={<a href="/buildings"><img alt="example" src={houseLogo} height={120} /></a>}
                   >
                     <Meta title="红高粱" />
                   </Card>
@@ -136,11 +136,7 @@ export const Square = () => {
       </div>
       <div style={{ position: "fixed", right: "5px", top: "500px" }}>
         <Link to="/add">
-          <Image
-            width={50}
-            height={50}
-            src={addItem}
-          />
+          <Image width={50} height={50} src={addItem} />
         </Link>
       </div>
       <div>

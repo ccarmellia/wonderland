@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
 import "antd/dist/antd.css";
+import recommand3 from "../../assets/recommand3.png"
 import houseLogo from "../../assets/houseLogo.png";
 import userAvatar from "../../assets/userAvatar.png";
 import { PageHeader, List, Image, Tabs, Card } from "antd";
@@ -145,9 +146,9 @@ export const Buildings = () => {
                         src={userAvatar}
                         style={{ padding: "0px 10px 8px 0px" }}
                       />
-                      <span>{item.username}</span>
+                      <span>{"李桑"}</span>
                     </div>
-                    <Meta description={item.content} />
+                    <Meta description={<Image src={recommand3}/>} />
                   </Card>
                 </List.Item>
               )}
