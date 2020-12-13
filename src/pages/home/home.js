@@ -1,9 +1,9 @@
 /* eslint no-dupe-keys: 0, no-mixed-operators: 0 */
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios";
 import "antd/dist/antd.css";
 import "./home.css";
-import { Link, Redirect } from "react-router-dom";
+import { Link} from "react-router-dom";
 import addItem from "../../assets/addItem.png";
 import houseLogo from "../../assets/houseLogo.png";
 import { Navigation } from "../../components/navigation";
@@ -45,10 +45,10 @@ export const Home = () => {
     });
   };
 
-  function handleClick(buildingName) {
-    localStorage.setItem("buildingName", buildingName);
-    console.log(buildingName);
-  }
+  // function handleClick(buildingName) {
+  //   localStorage.setItem("buildingName", buildingName);
+  //   console.log(buildingName);
+  // }
 
   const { list } = itemList;
 

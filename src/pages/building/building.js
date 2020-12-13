@@ -54,7 +54,6 @@ export const Buildings = () => {
   }, [itemList]);
 
   const getData = () => {
-    const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
     axios({
       url: "/querysave",
@@ -72,8 +71,6 @@ export const Buildings = () => {
       console.log(res.data.data);
     });
   };
-
-  const { list } = itemList;
 
   return (
     <div>
