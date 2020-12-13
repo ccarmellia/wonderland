@@ -1,4 +1,5 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
+import axios from "axios";
 import "antd/dist/antd.css";
 import houseLogo from "../../assets/houseLogo.png";
 import userAvatar from "../../assets/userAvatar.png";
@@ -39,6 +40,40 @@ const data = [
 ];
 
 export const Buildings = () => {
+
+  const [itemList, setItemList] = useState([]);
+  useEffect(() => {
+    getData((res) => {
+      // setItemList({
+      //   data: res.data.data,
+      //   list: res.data.data,
+      // });
+      // console.log(res.data.data);
+    });
+  }, [itemList]);
+
+  const getData = () => {
+    const username = localStorage.getItem("username");
+    const token = localStorage.getItem("token");
+    axios({
+      url: "/querysave",
+      type: "json",
+      method: "post",
+      headers: { token: token },
+      // data: { buildingName: },
+      contentType: "application/json",
+    }).then((res) => {
+      setItemList({
+        initLoading: false,
+        data: res.data.data,
+        list: res.data.data,
+      });
+      console.log(res.data.data);
+    });
+  };
+
+  const { list } = itemList;
+
   return (
     <div>
       <div>

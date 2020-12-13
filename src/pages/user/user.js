@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import "./user.css";
+import addItem from "../../assets/addItem.png";
 import axios from "axios";
 import logoutLogo from "../../assets/logoutLogo.png";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import userAvatar from "../../assets/userAvatar.png";
 import { Navigation } from "../../components/navigation";
 import { Card, Image, List, Avatar } from "antd";
 
 const { Meta } = Card;
-
 
 // const Logout = () => {
 //   localStorage.removeItem("username");
@@ -66,7 +66,10 @@ export const User = () => {
         />
         <div className="logouLogo">
           <Image
-            // onClick={Logout()}
+            onClick={() => {
+              localStorage.removeItem("username");
+              localStorage.removeItem("token");
+            }}
             className="logouLogo"
             src={logoutLogo}
             width={40}
@@ -91,12 +94,16 @@ export const User = () => {
               <List.Item.Meta
                 avatar={<Avatar src={userAvatar} />}
                 title={item.up_id}
-              >
-              </List.Item.Meta>
+              ></List.Item.Meta>
               {item.text_src}
             </List.Item>
           )}
         />
+      </div>
+      <div style={{ position: "fixed", right: "5px", top: "500px" }}>
+        <Link to="/add">
+          <Image width={50} height={50} src={addItem} />
+        </Link>
       </div>
       <div>
         <Navigation />

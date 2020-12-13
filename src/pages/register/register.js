@@ -19,19 +19,20 @@ export const Register = () => {
   //   })();
   // };
   const onFinish = (values) => {
-    axios.post('/register', {
-      username: values.nickname,
-      password: values.password
-    })
-    .then(function (res) {
-      console.log(res);
-      console.log(res.data.data.username)
-      localStorage.setItem("username", res.data.data.username);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
+    axios
+      .post("/register", {
+        username: values.nickname,
+        password: values.password,
+      })
+      .then(function (res) {
+        console.log(res);
+        console.log(res.data.data.username);
+        localStorage.setItem("username", res.data.data.username);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   const username = localStorage.getItem("username");
   if (username) {
     return <Redirect to="/login" />;
@@ -39,11 +40,7 @@ export const Register = () => {
 
   return (
     <div className="Wrapper">
-      <Form
-        form={form}
-        name="register"
-        onFinish={onFinish}
-      >
+      <Form form={form} name="register" onFinish={onFinish}>
         <Form.Item
           name="nickname"
           rules={[
@@ -56,6 +53,7 @@ export const Register = () => {
         >
           <Input
             className="userInput"
+            placeholder="用户名"
             prefix={<UserOutlined style={{ fontSize: "24px" }} />}
           />
         </Form.Item>
@@ -72,6 +70,7 @@ export const Register = () => {
         >
           <Input.Password
             className="psdInput"
+            placeholder="密码"
             prefix={<LockOutlined style={{ fontSize: "24px" }} />}
           />
         </Form.Item>
@@ -99,6 +98,7 @@ export const Register = () => {
           ]}
         >
           <Input.Password
+            placeholder="确认密码"
             className="psdInput"
             prefix={<LockOutlined style={{ fontSize: "24px" }} />}
           />

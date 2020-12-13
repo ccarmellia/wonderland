@@ -1,10 +1,31 @@
-import React, { useRef,useState } from "react";
+import React, { useRef } from "react";
 import "antd/dist/antd.css";
-import { PageHeader, Button } from "antd";
+import { PageHeader, Button,Cascader } from "antd";
 import axios from "axios";
-import { Input } from "antd";
 
-const { TextArea } = Input;
+const options = [
+    {
+      value: '红与黑',
+      label: '红与黑',
+    },
+    {
+      value: '红辣椒',
+      label: '红辣椒',
+    },
+    {
+      value: '红玫瑰',
+      label: '红玫瑰',
+    },
+    {
+      value: '红楼梦',
+      label: '红楼梦',
+    },
+  ];
+  
+  function onChange(value) {
+    localStorage.setItem("buildingName",value)
+  }
+
 
 export const AddPage = () => {
     
@@ -35,7 +56,8 @@ export const AddPage = () => {
           style={{ backgroundColor: "#82C6B1", width: "100%", height: "80px" }}
           ghost={false}
           onBack={() => window.history.back()}
-          extra={[
+          extra={[    
+            <Cascader options={options} onChange={onChange} placeholder="Please select" />,
             <Button
               onClick={Create}
               style={{

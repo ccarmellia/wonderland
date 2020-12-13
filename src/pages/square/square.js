@@ -1,11 +1,13 @@
 import React from "react";
 import { Navigation } from "../../components/navigation";
 import "antd/dist/antd.css";
+import { Link, Redirect } from "react-router-dom";
+import addItem from "../../assets/addItem.png";
 import recommand1 from "../../assets/recommand1.jpg";
 import recommand2 from "../../assets/recommand2.jpg";
 import recommand3 from "../../assets/recommand3.png";
 import recommand4 from "../../assets/recommand4.png";
-import { Input, Carousel, Tabs, Card, List,Image } from "antd";
+import { Input, Carousel, Tabs, Card, List, Image } from "antd";
 import houseLogo from "../../assets/houseLogo.png";
 
 const { Search } = Input;
@@ -51,7 +53,6 @@ function callback(key) {
 }
 
 export const Square = () => {
-
   return (
     <div className="carouselWrapper">
       <div className="searchWrapper">
@@ -132,6 +133,15 @@ export const Square = () => {
             />
           </TabPane>
         </Tabs>
+      </div>
+      <div style={{ position: "fixed", right: "5px", top: "500px" }}>
+        <Link to="/add">
+          <Image
+            width={50}
+            height={50}
+            src={addItem}
+          />
+        </Link>
       </div>
       <div>
         <Navigation />
